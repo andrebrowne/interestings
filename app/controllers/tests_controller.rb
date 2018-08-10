@@ -1,3 +1,4 @@
+require 'json'
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
 
@@ -5,7 +6,11 @@ class TestsController < ApplicationController
   # GET /tests.json
   def index
     @tests = Test.all
-    @wiki_fact = Wikipedia.find_random
+    @wiki_fact = Wikipedia.find(DateTime.now.strftime("%B %e"))
+    @wiki_raw = @wiki_fact.text
+    @wiki_events = @wiki_raw.split("\n") #creates an array
+    @facts_of_the_day = @wiki_events.slice!(20,5)
+    @wiki_events = @facts_of_the_day
   end
 
   # GET /tests/1

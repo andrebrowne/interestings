@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Interestings! Whew!</h1>
-
-<p>Welcome to the interestingsApp.</p> 
-
-<p><%= @wiki_fact.title %></p>
-<p><%= @wiki_fact.summary %></p>
+<h1><%= @wiki_fact.title %> Interesting Facts:</h1>
 
 
-<!-- 
+
+
+<% @wiki_events.each do |event|%>
+  <p> <%= event %> </p>
+<% end %>
+
+
+<!-- <p><%= @wiki_raw.gsub("\n", "<br />") %></p>
 <table>
   <thead>
     <tr>
